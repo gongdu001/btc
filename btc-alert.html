@@ -1,201 +1,103 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTC 가격 급변동 알림</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-        
-        .price-display {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .current-price {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .price-change {
-            font-size: 18px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        
-        .price-up {
-            background: #4CAF50;
-        }
-        
-        .price-down {
-            background: #f44336;
-        }
-        
-        .settings {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-size: 16px;
-        }
-        
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            background: #4CAF50;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        button:hover {
-            background: #45a049;
-        }
-        
-        button:disabled {
-            background: #666;
-            cursor: not-allowed;
-        }
-        
-        .status {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .alert-log {
-            margin-top: 20px;
-            max-height: 200px;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .alert-item {
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-        }
-        
-        .alert-item:last-child {
-            border-bottom: none;
-        }
-        
-        .error {
-            background: rgba(244, 67, 54, 0.2);
-            color: #ffcdd2;
-        }
-        
-        .server-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .server-info code {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BTC 가격 급변동 알림</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .current-price {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .price-change {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      margin-bottom: 10px;
+    }
+    label {
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .status {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .alert-log {
+      font-size: 12px;
+      margin-top: 10px;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>🪙 BTC/USDT 가격 알림</h1>
+    <div class="current-price" id="currentPrice">-</div>
+    <div class="price-change" id="priceChange">대기중...</div>
 
-    <div class="price-display">
-      <div class="current-price" id="currentPrice">-</div>
-      <div class="price-change" id="priceChange">연결 대기중...</div>
+    <div class="input-group">
+      <label>급변동 기준 (%)</label>
+      <input type="number" id="threshold" value="1" min="0.1" step="0.1" />
     </div>
-
-    <div class="settings">
-      <div class="input-group">
-        <label for="threshold">급변동 기준 (%)</label>
-        <input type="number" id="threshold" value="1" min="0.1" max="10" step="0.1" />
-      </div>
-      <div class="input-group">
-        <label for="timeframe">변화율 측정 시간 (초)</label>
-        <input type="number" id="timeframe" value="60" min="10" max="300" step="10" />
-      </div>
-      <div class="input-group">
-        <label for="interval">체크 간격 (초)</label>
-        <input type="number" id="interval" value="5" min="1" max="60" step="1" />
-      </div>
+    <div class="input-group">
+      <label>변화율 측정 시간 (초)</label>
+      <input type="number" id="timeframe" value="60" min="10" step="10" />
+    </div>
+    <div class="input-group">
+      <label>체크 간격 (초)</label>
+      <input type="number" id="interval" value="5" min="1" step="1" />
     </div>
 
     <button id="toggleBtn" onclick="toggleMonitoring()">모니터링 시작</button>
-    <button id="notificationBtn" onclick="requestNotificationPermission()" style="margin-top: 10px;">알림 권한 요청</button>
-
+    <button id="notificationBtn" onclick="requestNotificationPermission()">알림 권한 요청</button>
     <div class="status" id="status">준비 완료</div>
-
-    <div class="alert-log" id="alertLog">
-      <div style="text-align: center; color: rgba(255,255,255,0.5);">알림 내역이 여기에 표시됩니다</div>
-    </div>
+    <div class="alert-log" id="alertLog"></div>
   </div>
 
   <script>
@@ -203,68 +105,37 @@
     let intervalId = null;
     let priceHistory = [];
 
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').then(() => {
+        console.log('✅ Service Worker registered');
+      }).catch(err => {
+        console.error('❌ Service Worker 등록 실패:', err);
+      });
+    }
+
     function requestNotificationPermission() {
-      if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            updateStatus('알림 권한이 허용되었습니다');
-            document.getElementById('notificationBtn').style.display = 'none';
-            new Notification('BTC 가격 알림', {
-              body: '알림이 활성화되었습니다!',
-              icon: 'https://cdn-icons-png.flaticon.com/512/1490/1490849.png'
-            });
-          } else {
-            updateStatus('알림 권한이 거부되었습니다');
-          }
-        });
-      } else {
+      if (!('Notification' in window)) {
         updateStatus('이 브라우저는 알림을 지원하지 않습니다');
+        return;
       }
-    }
-
-    function calculatePriceChange(currentPrice) {
-      const timeframe = parseInt(document.getElementById('timeframe').value);
-      const interval = parseInt(document.getElementById('interval').value);
-      const requiredDataPoints = Math.floor(timeframe / interval);
-      if (priceHistory.length < requiredDataPoints) return null;
-      const oldPrice = priceHistory[priceHistory.length - requiredDataPoints];
-      return ((currentPrice - oldPrice) / oldPrice) * 100;
-    }
-
-    function sendNotification(price, changePercent) {
-      const timeframe = parseInt(document.getElementById('timeframe').value);
-      const timeText = timeframe >= 60 ? `${Math.floor(timeframe / 60)}분` : `${timeframe}초`;
-      const direction = changePercent > 0 ? '상승' : '하락';
-      const message = `BTC 가격이 ${timeText}간 ${Math.abs(changePercent).toFixed(2)}% ${direction}했습니다!\n현재가: $${price.toFixed(2)}`;
-      if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('⚠️ BTC 가격 급변동!', {
-          body: message,
-          icon: 'https://cdn-icons-png.flaticon.com/512/1490/1490849.png',
-          requireInteraction: true
-        });
+      if (Notification.permission === 'granted') {
+        updateStatus('이미 알림 권한이 허용되어 있습니다');
+        document.getElementById('notificationBtn').style.display = 'none';
+        return;
       }
-      addAlertLog(message);
-      playAlertSound();
-    }
-
-    function addAlertLog(message) {
-      const logDiv = document.getElementById('alertLog');
-      const alertItem = document.createElement('div');
-      alertItem.className = 'alert-item';
-      const time = new Date().toLocaleTimeString('ko-KR');
-      alertItem.textContent = `[${time}] ${message}`;
-      if (logDiv.children.length === 1 && logDiv.firstChild.textContent.includes('알림 내역이')) {
-        logDiv.innerHTML = '';
+      if (Notification.permission === 'denied') {
+        updateStatus('🔒 브라우저 설정에서 알림을 허용해주세요');
+        alert('⚠️ 알림이 차단되어 있습니다. 브라우저 설정에서 허용해주세요.');
+        return;
       }
-      logDiv.insertBefore(alertItem, logDiv.firstChild);
-      while (logDiv.children.length > 10) {
-        logDiv.removeChild(logDiv.lastChild);
-      }
-    }
-
-    function playAlertSound() {
-      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE');
-      audio.play().catch(e => console.log('사운드 재생 실패:', e));
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          updateStatus('알림 권한이 허용되었습니다');
+          document.getElementById('notificationBtn').style.display = 'none';
+        } else {
+          updateStatus('❌ 알림 권한이 거부되었습니다');
+        }
+      });
     }
 
     function toggleMonitoring() {
@@ -272,12 +143,10 @@
       if (isMonitoring) {
         stopMonitoring();
         btn.textContent = '모니터링 시작';
-        btn.style.background = '#4CAF50';
         updateStatus('모니터링 중지됨');
       } else {
         startMonitoring();
         btn.textContent = '모니터링 중지';
-        btn.style.background = '#f44336';
         updateStatus('모니터링 시작됨');
       }
     }
@@ -285,23 +154,19 @@
     function startMonitoring() {
       isMonitoring = true;
       priceHistory = [];
-      const intervalSeconds = parseInt(document.getElementById('interval').value);
       checkPrice();
-      intervalId = setInterval(checkPrice, intervalSeconds * 1000);
+      const interval = parseInt(document.getElementById('interval').value);
+      intervalId = setInterval(checkPrice, interval * 1000);
     }
 
     function stopMonitoring() {
       isMonitoring = false;
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
+      if (intervalId) clearInterval(intervalId);
     }
 
     async function checkPrice() {
       try {
         const response = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
-        if (!response.ok) throw new Error(`서버 응답 오류: ${response.status}`);
         const data = await response.json();
         const price = parseFloat(data.price);
         document.getElementById('currentPrice').textContent = `$${price.toFixed(2)}`;
@@ -312,48 +177,69 @@
         const maxHistory = Math.ceil(timeframe / interval) + 1;
         if (priceHistory.length > maxHistory) priceHistory.shift();
 
-        const changePercent = calculatePriceChange(price);
-        const changeDiv = document.getElementById('priceChange');
-
-        if (changePercent !== null) {
+        const change = calculateChange(price);
+        if (change !== null) {
           const threshold = parseFloat(document.getElementById('threshold').value);
-          const timeText = timeframe >= 60 ? `${Math.floor(timeframe / 60)}분` : `${timeframe}초`;
-          changeDiv.textContent = `${timeText} 변화율: ${changePercent >= 0 ? '+' : ''}${changePercent.toFixed(2)}%`;
-          changeDiv.className = `price-change ${changePercent >= 0 ? 'price-up' : 'price-down'}`;
-          if (Math.abs(changePercent) >= threshold) {
-            sendNotification(price, changePercent);
+          document.getElementById('priceChange').textContent = `변화율: ${change.toFixed(2)}%`;
+
+          if (Math.abs(change) >= threshold) {
+            sendNotification(price, change);
           }
         } else {
-          const requiredDataPoints = Math.floor(timeframe / interval);
-          const currentDataPoints = priceHistory.length;
-          const remainingTime = (requiredDataPoints - currentDataPoints) * interval;
-          changeDiv.textContent = `데이터 수집 중... (${remainingTime}초 남음)`;
-          changeDiv.className = 'price-change';
+          document.getElementById('priceChange').textContent = '데이터 수집 중...';
         }
 
-        updateStatus(`마지막 체크: ${new Date().toLocaleTimeString('ko-KR')}`);
-      } catch (error) {
-        console.error('가격 조회 실패:', error);
-        document.getElementById('status').className = 'status error';
-        updateStatus(`오류: ${error.message}`);
-        document.getElementById('priceChange').textContent = 'Binance 연결 실패';
-        document.getElementById('priceChange').className = 'price-change price-down';
+        updateStatus(`마지막 체크: ${new Date().toLocaleTimeString()}`);
+      } catch (err) {
+        updateStatus('가격 가져오기 실패');
+        console.error(err);
       }
     }
 
-    function updateStatus(message) {
-      const statusDiv = document.getElementById('status');
-      statusDiv.textContent = message;
-      if (!message.includes('오류')) statusDiv.className = 'status';
+    function calculateChange(currentPrice) {
+      const timeframe = parseInt(document.getElementById('timeframe').value);
+      const interval = parseInt(document.getElementById('interval').value);
+      const points = Math.floor(timeframe / interval);
+      if (priceHistory.length < points) return null;
+      const oldPrice = priceHistory[priceHistory.length - points];
+      return ((currentPrice - oldPrice) / oldPrice) * 100;
     }
 
-    // 초기 알림 권한 체크
-    if ('Notification' in window && Notification.permission === 'granted') {
+    function sendNotification(price, change) {
+      const message = `BTC가 ${Math.abs(change).toFixed(2)}% ${change > 0 ? '상승' : '하락'}했습니다! 현재가: $${price.toFixed(2)}`;
+      addLog(message);
+      playSound();
+
+      if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'SHOW_NOTIFICATION',
+          title: '⚠️ BTC 가격 급변동!',
+          body: message,
+          icon: 'https://cdn-icons-png.flaticon.com/512/1490/1490849.png'
+        });
+      }
+    }
+
+    function addLog(msg) {
+      const div = document.getElementById('alertLog');
+      const time = new Date().toLocaleTimeString();
+      div.innerHTML = `[${time}] ${msg}<br>` + div.innerHTML;
+    }
+
+    function playSound() {
+      const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE');
+      audio.play().catch(console.error);
+    }
+
+    function updateStatus(msg) {
+      document.getElementById('status').textContent = msg;
+    }
+
+    // 자동 시작 시도
+    checkPrice();
+    if (Notification.permission === 'granted') {
       document.getElementById('notificationBtn').style.display = 'none';
     }
-
-    // 초기 가격 확인
-    checkPrice();
   </script>
 </body>
 </html>
