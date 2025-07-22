@@ -1,0 +1,21 @@
+<!-- btc-alert.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BTC 가격 알리미</title>
+</head>
+<body>
+  <h1>BTC 가격: <span id="price">불러오는 중...</span></h1>
+  <script>
+    fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('price').innerText = parseFloat(data.price).toFixed(2) + ' USDT';
+      })
+      .catch(err => {
+        document.getElementById('price').innerText = '불러오기 실패';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
